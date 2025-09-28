@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitcoin-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bitcoin-node
+  template:
+    metadata:
+      labels:
+        app: bitcoin-node
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: bitcoin
+          image: localhost:5000/bitcoind:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8332
+              name: rpc
+          livenessProbe:
+            exec:
+              command:
+                - "bitcoin-cli"
+                - "ping"
+            initialDelaySeconds: 1
+            periodSeconds: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            exec:
+              command:
+                - "bitcoin-cli"
+                - "ping"
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/bitcoin/
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: bitcoin-data-pvc

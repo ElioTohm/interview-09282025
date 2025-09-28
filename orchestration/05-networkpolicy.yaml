@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: bitcoin-node-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: bitcoin-node
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              rpc-client: "true"
+      ports:
+        - protocol: TCP
+          port: 18443
+  egress:
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - protocol: UDP
+          port: 53
+    - ports:
+        - protocol: TCP
+          port: 18444
