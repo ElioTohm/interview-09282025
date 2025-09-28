@@ -47,12 +47,35 @@ The pipeline performs the following steps:
 
 The `terraform` directory contains Infrastructure as Code to demonstrate best practices, including the use of modules for templating and security.
 
+```bash
+cd ./terraform/
+terraform plan --var-file="./variable.tfvars"
+
+# than
+
+terraform apply --var-file="./variable.tfvars"
+
+# Finally
+
+terraform destroy- -var-file="./variable.tfvars"
+
+```
+
 ## Scripts
 
 The `scripts` directory includes:
 
 - A shell script for log analysis (`log-analysis.sh`) which counts IP address occurrences.
 - A Go program (`scripts/golang/`) with similar functionality, including unit tests.
+
+```bash
+cd ./scripts
+./log-analysis.sh  ./sample.log
+# or
+cd ./scripts/golang/
+go test ./...
+go run . --file=../sample.log
+```
 
 I have used AI to write this readme.md as for the rest was based on leveraging opensource and the community to apply best practicies which also helps with boiler place like the terraform aws modules used
 looking forward for the interview for a deeper dive of the work
