@@ -1,0 +1,13 @@
+[29/Sep/2021:10:20:48+0100] 192.168.22.11 /healthz GET Mozilla/5.0
+[29/Sep/2021:10:21:12+0100] 10.32.89.34 /api/v1/users POST App/1.0
+[29/Sep/2021:10:21:15+0100] 192.168.22.11 /static/main.css GET Mozilla/5.0
+[29/Sep/2021:10:21:18+0100] 192.168.22.11 /js/app.js GET Mozilla/5.0
+
+This is a malformed line that should be skipped.
+[29/Sep/2021:10:22:01+0100] 172.32.9.12 / GET Mozilla/5.0
+[29/Sep/2021:10:22:05+0100] 10.32.89.34 /api/v1/posts GET App/1.0
+[29/Sep/2021:10:23:30+0100] 192.168.22.11 /images/logo.png GET Mozilla/5.0
+[29/Sep/2021:10:24:00+0100] 121.89.25.43 /login POST Mozilla/5.0
+[29/Sep/2021:10:24:02+0100] 10.32.89.34 /logout GET App/1.0
+[29/Sep/2021:10:24:05+0100] 192.168.22.11 /favicon.ico GET Mozilla/5.0
+
