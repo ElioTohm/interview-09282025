@@ -1,5 +1,4 @@
 name: CI
-on: push
 
 env:
   REGISTRY: localhost:5000
